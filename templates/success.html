@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checkout Successful</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class ="success-page">
+<header class="site-header">
+    <h1>Checkout Successful</h1>
+</header>
+
+<main class="checkout-page">
+    <p>Thank you for your purchase! Your order has been successfully processed.</p>
+    <p>We will process your order and ship it as soon as possible.</p>
+    <p>We hope you enjoy your new onesie!</p>
+    <a href="{{ url_for('galleryPage') }}" class="back-link">← Back to shop</a>
+</main>
+</body>
+</html>
+

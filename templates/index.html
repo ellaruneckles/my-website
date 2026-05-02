@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Onesie Website</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class ="home-page">
+    <header class="site-header">
+        <div class="top-bar">
+            <div>
+            <h1>Cosy Onesie Shop</h1>
+            <p>Pick your favourite comfy onesie</p>
+            </div>
+
+            <a href="{{ url_for('basketPage') }}" class="basket-link">
+                Basket ({{ basket_count }})
+            </a>
+        </div>
+    </header>
+    <div class="sort-grid">
+        <p> </p>
+        <form method="GET" class="sort-form">
+            <label for="sort"> Sort by:</label>
+            <select name="sort" id="sort" onchange="this.form.submit()">
+                <option value="name">Name</option>
+                <option value="price">Price (low to high)</option>
+                <option value="impact">Environmental Impact (low to high)</option>
+            </select>
+        </form>
+    </div>
+
+    <main class="product-grid">
+
+    {% for product in products %}
+        <div class="product-card">
+            <p> </p>
+            <!-- CLICKABLE IMAGE -->
+            <a href="/item/{{ loop.index0 }}">
+                <img src="{{ url_for('static', filename='images/' + product.image) }}" alt="{{ product.name }}">
+            </a>
+
+            <!-- CLICKABLE NAME -->
+            <h2>
+                <a href="/item/{{ loop.index0 }}" class="product-link">
+                    {{ product.name }}
+                </a>
+            </h2>
+        
+            <p class="price">£{{ "%.2f"|format(product.price) }}</p>
+            <p class="description">{{ product.description }}</p>
+            <p class="impact">Environmental Impact: {{ product.impact }}/10</p>
+                
+            <form method="POST" action = "{{ url_for('add_to_basket', itemId=product.id) }}" >
+                <input type="hidden" name="quantity" value="1">
+                <button class="addtobasket-home" type="submit">Add 1 to basket</button>
+                </form>
+
+                <!-- optional button -->
+            <a class="button" href="/item/{{ loop.index0 }}">View product</a>
+
+
+        </div>
+    {% endfor %}
+    </main>
+</body>
+</html>
+

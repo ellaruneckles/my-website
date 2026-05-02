@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Basket</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="top-bar">
+            <div>
+                <h1>Your Basket</h1>
+                <a href="{{ url_for('galleryPage') }}" class="back-link">← Continue shopping</a>
+            </div>
+            
+            <a href="{{ url_for('basketPage') }}" class="basket-link">
+                Basket ({{ basket_count }})
+            </a>
+        </div>
+    </header>
+    
+    <main class="basket-page">
+        {% if basket %}
+        <div class="basket-items">
+            {% for item in basket %}
+            <div class="basket-item">
+                <img src="{{ url_for('static', filename='images/' + item.image) }}" alt="{{ item.name }}">
+                
+                <div class="basket-details">
+                    <h2>{{ item.name }}</h2>
+                    <p>Price: £{{ "%.2f"|format(item.price) }}</p>
+                    <p>Quantity: {{ item.quantity }}</p>
+                    <p>Subtotal: £{{ "%.2f"|format(item.price * item.quantity) }}</p>
+                </div>
+                
+                <form method="POST" action="{{ url_for('remove_from_basket', itemId=item.id) }}">
+                    <button type="submit" class="remove-button">Remove</button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="basket-summary">
+            <h2>Total: £{{ "%.2f"|format(total) }}</h2>
+            {% if basket %}
+            <a href="{{ url_for('checkout') }}" class = "checkout-button">Proceed to checkout</a>
+            {% endif %}
+            <p></p>
+            <form method="POST" action="{{ url_for('clear_basket') }}">
+                <button class = "clear-basket-button"type="submit">Clear basket</button>
+            </form>
+        </div>
+        {% else %}
+        <p class="empty-basket">Your basket is empty.</p>
+        {% endif %}
+    </main>
+</body>
+</html>

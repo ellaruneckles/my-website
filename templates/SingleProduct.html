@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ product.name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="top-bar">
+            <div>
+                <h1>{{ product.name }}</h1>
+                <a href="{{ url_for('galleryPage') }}" class="back-link">← Back to shop</a>
+            </div>
+            
+            <a href="{{ url_for('basketPage') }}" class="basket-link">
+                Basket ({{ basket_count }})
+            </a>
+        </div>
+    </header>
+
+    <main class="single-product">
+        <div class="single-product-image">
+            <img src="{{ url_for('static', filename='images/' + product.image) }}" alt="{{ product.name }}">
+        </div>
+        
+        <div class="single-product-info">
+            <h2>{{ product.name }}</h2>
+            <p class="price">£{{ "%.2f"|format(product.price) }}</p>
+            <p>{{ product.description }}</p>
+            <p class="impact">Impact: {{ product.impact }}/10</p>
+            
+            <form method="POST" class="basket-form">
+                <label for="quantity">Quantity:</label>
+                <input type="number" name="quantity" min="1" value="1" required>
+                <button type="submit">Add to basket</button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>
