@@ -123,13 +123,44 @@ body {
     background: #574fd6;
 }
 
+
+
+.header-button {
+    background: white;
+    color: #6c63ff;
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-weight: bold;
+    position:absolute;
+    left: 20px;
+}
+
+.header-button:hover {
+    background: #d0d0d0;
+}
+
 .top-bar {
-    max-width: 1100px;
-    margin: 0 auto;
     display: flex;
+    gap: 20px;
     justify-content: space-between;
     align-items: center;
-    gap: 20px;
+    position: relative;
+}
+
+.header-left {
+    flex: 1;
+    text-align: left;
+}
+
+.header-center {
+    flex: 1;
+    text-align: center;
+}
+
+.header-right {
+    flex: 1;
+    text-align: right;
 }
 
 .home-page .top-bar {
@@ -259,11 +290,17 @@ body {
 
 .sort-grid {
     display: flex;
-    justify-content: flex-end;
-    gap: 40px;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    margin-right: 30px;
+    flex-direction:column;
+    align-items: center;
+    gap: 8px;
+    margin: 20px 0;
+}
+
+.search-form,
+.sort-form{
+    display:flex;
+    gap: 6px;
+    align-items: center;
 }
 
 .checkout-page {
@@ -335,4 +372,82 @@ body {
 
 .success-page .back-link {
     color:#000000;
+}
+
+.reviews-container {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.review-box {
+    background: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    border-left: 5px solid #6c63ff;
+    font-size: 14px;
+    color: #333
+}
+
+.basket-form,
+.review-form {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.basket-form input,
+.review-form input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.basket-form input[type="number"] {
+    width: 70px;
+}
+
+.review-form input[name="review"] {
+    width: 220px;
+}
+
+.review-form input[name="rating"] {
+    width: 80px;
+}
+
+.basket-form button,
+.review-form button {
+    background: #6c63ff;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.basket-form button:hover,
+.review-form button:hover {
+    background: #574fd6;
+}
+
+.hover-box {
+    display: none;
+    position: absolute;
+    width: 260px;
+    background: white;
+    color: #222;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    z-index: 1000;
+    font-size: 14px;
+}
+
+.hover-box h3 {
+    margin-top: 0;
+    color: #6c63ff;
 }

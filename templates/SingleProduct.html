@@ -30,11 +30,43 @@
             <p class="impact">Impact: {{ product.impact }}/10</p>
             
             <form method="POST" class="basket-form">
-                <label for="quantity">Quantity:</label>
-                <input type="number" name="quantity" min="1" value="1" required>
+                <input type="hidden" name="action" value="basket">
+
+                <label>Quantity:</label>
+                <input type="number" name="quantity" min="1" value="1">
+                
                 <button type="submit">Add to basket</button>
+                <p> </p>
+            </form>
+            <form method="POST" class="review-form">
+                <p> </p>
+                <input type="hidden" name="action" value="review">
+
+                <input type="text" name="review" placeholder="Write a Review">
+                <input type="number" name="rating" min = "1" max="5">
+                
+                <button type="submit" >Add review!</button>
             </form>
         </div>
     </main>
+
+    <h2>  Reviews:</h2>
+    <div class="reviews-container">
+        {% if reviews %}
+            {% for r in reviews %}
+                <div class="review-box">
+                    <strong>{{ r.username }}</strong> ⭐{{ r.rating }}<br>{{ r.text }}
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No reviews yet. </p>
+        {% endif %} 
+    </div>
+    <br>
+
+    <form method="POST" action="{{ url_for('clear_reviews_item', itemId = product.id)}}">
+        <button type="submit">Clear Reviews</button>
+    </form>
+ 
 </body>
 </html>
