@@ -55,7 +55,7 @@
     <main class="product-grid">
 
     {% for product in products %}
-        <div class="product-card" onmouseenter="showProductInfo({{ product.id }}, event)" onmouseleave="hideProductInfo()">
+        <div class="product-card" onmouseenter="showProductInfo('{{ product.id }}', event)" onmouseleave="hideProductInfo()">
             <p> </p>
             <!-- CLICKABLE IMAGE -->
             <a href="/item/{{ product.id }}">
